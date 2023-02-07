@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Objects;
 
 // TODO: write a JavaDoc for the class
+/**
+ * Class for Labels
+ */
 
 /**
  *

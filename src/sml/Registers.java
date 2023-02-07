@@ -4,6 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
+/**
+ * Class for Registers
+ */
 
 /**
  *
@@ -48,9 +51,10 @@ public final class Registers {
     // TODO: use pattern matching for instanceof
     // https://docs.oracle.com/en/java/javase/14/language/pattern-matching-instanceof-operator.html
     @Override
-    public boolean equals(Object o) {
-        if (o instanceof Registers) {
-            Registers other = (Registers) o;
+    public boolean equals(Object o) { 
+        // if (o instanceof Registers) { // replaced by below
+	if (o instanceof Registers other) {
+            // Registers other = (Registers) o; // not needed due to above replacement
             return registers.equals(other.registers);
         }
         return false;

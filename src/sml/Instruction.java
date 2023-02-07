@@ -1,6 +1,9 @@
 package sml;
 
 // TODO: write a JavaDoc for the class
+/**
+ * A abstract class
+ */
 
 /**
  * Represents an abstract instruction.
