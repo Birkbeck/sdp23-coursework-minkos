@@ -6,5 +6,3 @@ L1: mov EAX 66
     jnz EAX L1
 
 
-
-extra............
