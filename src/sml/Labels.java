@@ -6,7 +6,7 @@ import java.util.Objects;
 
 // TODO: write a JavaDoc for the class
 /**
- * Class for Labels
+ * Class for Labels .....KIV....elaborate
  */
 
 /**
@@ -34,9 +34,11 @@ public final class Labels {
 	 * @param label the label
 	 * @return the address the label refers to
 	 */
-	public int getAddress(String label) {
+	public int getAddress(String label) throws NullPointerException {
 		// TODO: Where can NullPointerException be thrown here?
 		//       (Write an explanation.)
+		// Ans: A specification of the throws clause that outputs a NullPointerException when a reference is used that
+		//  	....points to no location in memory, which is null, like it was referencing an object.
 		//       Add code to deal with non-existent labels.
 		return labels.get(label);
 	}

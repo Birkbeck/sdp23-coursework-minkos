@@ -2,7 +2,7 @@ package sml;
 
 // TODO: write a JavaDoc for the class
 /**
- * A abstract class
+ * A abstract class  .....KIV....elaborate
  */
 
 /**
@@ -54,7 +54,7 @@ public abstract class Instruction {
 	// TODO: What does abstract in the declaration below mean?
 	//       Abstract used here means that the actual implementation of the function, toString(), has yet to be determined.
 	//	 Its actual functionality could be overriden by functions in other classes via inheritance, thereafter, the actual functionality is implemented.
-	// 	 Abstract over here gives a rough outline of those functionalities that will be implemented in other classes.
+	// 	 Abstract over here gives a rough outline in terms of naming convention of those functionalities that will be implemented in other classes.
 	// 	 In this case, we know that other functions in other classes that are implementing this abstract function will return a String. 
 	@Override
 	public abstract String toString();

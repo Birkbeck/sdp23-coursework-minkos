@@ -9,6 +9,9 @@ public class Main {
 	 * @param args name of the file containing the program text.
 	 */
 	public static void main(String... args) {
+
+		System.out.println("Inputs: " + args[0]);
+
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments - Machine <file> - required");
 			System.exit(-1);
