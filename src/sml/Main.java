@@ -1,7 +1,7 @@
 package sml;
 
 import java.io.IOException;
-// comment on .........
+
 public class Main {
 	/**
 	 * Initialises the system and executes the program.
@@ -9,8 +9,6 @@ public class Main {
 	 * @param args name of the file containing the program text.
 	 */
 	public static void main(String... args) {
-
-		System.out.println("Inputs: " + args[0]);
 
 		if (args.length != 1) {
 			System.err.println("Incorrect number of arguments - Machine <file> - required");
@@ -21,6 +19,7 @@ public class Main {
 			Translator t = new Translator(args[0]);
 			Machine m = new Machine(new Registers());
 			t.readAndTranslate(m.getLabels(), m.getProgram());
+
 
 			System.out.println("Here is the program; it has " + m.getProgram().size() + " instructions.");
 			System.out.println(m);

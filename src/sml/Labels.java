@@ -1,5 +1,6 @@
 package sml;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -25,6 +26,7 @@ public final class Labels {
 	public void addLabel(String label, int address) {
 		Objects.requireNonNull(label);
 		// TODO: Add a check that there are no label duplicates.
+
 		labels.put(label, address);
 	}
 
@@ -56,6 +58,15 @@ public final class Labels {
 	}
 
 	// TODO: Implement equals and hashCode (needed in class Machine).
+	public boolean equals(Object o) {
+
+		return true;
+	}
+
+
+	public int hashCode() {
+		return 1;
+	}
 
 	/**
 	 * Removes the labels

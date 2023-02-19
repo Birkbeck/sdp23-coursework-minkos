@@ -5,6 +5,8 @@ package sml;
  * A abstract class  .....KIV....elaborate
  */
 
+import java.util.Objects;
+
 /**
  * Represents an abstract instruction.
  *
@@ -60,4 +62,15 @@ public abstract class Instruction {
 	public abstract String toString();
 
 	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
+
+	public boolean equals(Object o) {
+
+		return true;
+	}
+
+
+	public int hashCode() {
+		return 1;
+	}
+
 }
