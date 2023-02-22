@@ -2,7 +2,7 @@ package sml;
 
 // TODO: write a JavaDoc for the class
 /**
- * A abstract class  .....KIV....elaborate
+ * An abstract class showcasing the essential information.
  */
 
 import java.util.Objects;

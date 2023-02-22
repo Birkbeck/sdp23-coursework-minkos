@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
 /**
- * Class for Registers  .....KIV....elaborate
+ * Class to manage getting and setting values in registers.
  */
 
 /**

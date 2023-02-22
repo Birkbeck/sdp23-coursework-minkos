@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 // TODO: write a JavaDoc for the class
 /**
- * Class for Labels .....KIV....elaborate
+ * Class for Labels and checks to determine whether duplicates exist
  */
 
 /**

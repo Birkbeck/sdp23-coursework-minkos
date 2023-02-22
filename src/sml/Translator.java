@@ -117,7 +117,7 @@ public final class Translator {
                 // Branching (register, i.e. EBX):
                 String firstReg = branchingIns.substring(8, 11);
                 // Branching (register, i.e. EAX)
-                String secondReg = branchingIns.substring(12); 
+                String secondReg = branchingIns.substring(12);
 
                 if ("mov".equals(ops)) {
                     int secondParam = Integer.parseInt(secondReg);

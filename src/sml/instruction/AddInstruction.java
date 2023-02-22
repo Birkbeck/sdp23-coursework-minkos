@@ -7,7 +7,8 @@ import sml.RegisterName;
 // TODO: write a JavaDoc for the class
 
 /**
- * @author
+ * @author	Wilson Chee
+ * Class for handling adding of 2 values from 2 different registers and storing in the first register
  */
 
 public class AddInstruction extends Instruction {
