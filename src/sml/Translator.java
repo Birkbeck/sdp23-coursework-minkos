@@ -4,6 +4,7 @@ import sml.instruction.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
@@ -65,6 +66,19 @@ public final class Translator {
      * The input line should consist of a single SML instruction,
      * with its label already removed.
      */
+
+    /*
+    // KIV............................................
+    public Instruction getInstruction(String label) {
+        try {
+            return Instruction.valueOf(label.name());
+        } catch (IllegalArgumentException ignore) {
+        throw new AssertionError(label);
+    }
+    */
+
+
+    // Reflection to create new instances; when at certain instruction, i.e. MulInstruction, to create a new instance.
     private Instruction getInstruction(String label) {
         if (line.isEmpty())
             return null;
@@ -77,7 +91,6 @@ public final class Translator {
                 return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
             case MovInstruction.OP_CODE -> {
-                System.out.println("Move op!");
 
                 String r = scan();
                 int v = Integer.parseInt(scan());
@@ -86,13 +99,9 @@ public final class Translator {
                 return new MovInstruction(label, Register.valueOf(r), v);
             }
             case MulInstruction.OP_CODE -> {
-                System.out.println("Multiply op!");
 
                 String r = scan();
                 String s = scan();
-
-                System.out.println("r mul: " + r);
-                System.out.println("s mul: " + s);
                 return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
             case SubInstruction.OP_CODE -> {
@@ -103,16 +112,19 @@ public final class Translator {
             case JnzInstruction.OP_CODE -> {
                 String r = scan();
 
+                // Branching (math ops, i.e. mul)
                 String ops = branchingIns.substring(4, 7);
+                // Branching (register, i.e. EBX):
                 String firstReg = branchingIns.substring(8, 11);
-                String secondReg = branchingIns.substring(12, 15);
+                // Branching (register, i.e. EAX)
+                String secondReg = branchingIns.substring(12); 
 
-                System.out.println("Branching (all): " + branchingIns);
-                System.out.println("Branching (Should be mul): " + branchingIns.substring(4, 7));
-                System.out.println("Branching (Should be EBX): " + branchingIns.substring(8, 11));
-                System.out.println("Branching (Should be EAX): " + branchingIns.substring(12, 15));
-                // KIV; should pass in i.e. sub EAX ECX, not f3 (b)...error below.................
-                return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(secondReg));
+                if ("mov".equals(ops)) {
+                    int secondParam = Integer.parseInt(secondReg);
+                    return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(firstReg), secondParam);
+                }
+
+                return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(secondReg), 0);
 
             }
             case OutInstruction.OP_CODE -> {
@@ -125,6 +137,9 @@ public final class Translator {
 
             // TODO: Then, replace the switch by using the Reflection API
 
+            //return c.newInstance(label, Register.valueOf(r), Register.valueOf(s));
+
+
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
 
@@ -133,7 +148,20 @@ public final class Translator {
             }
         }
         return null;
+
     }
+
+
+    /*
+    private Instruction getInstruction(String label) throws ClassNotFoundException {
+        // KIV...............................................................................
+        Class<?> c = Class.forName("sml.instruction");
+        //InputStream resourceAsStream = c.getResourceAsStream();
+
+
+        return null;
+    }
+    */
 
 
     private String getLabel() {
@@ -155,7 +183,6 @@ public final class Translator {
         if (oneTime) {
             if (line.substring(0).contains("f3")) {
                 branchingIns = line;
-                System.out.println("Persisted: " + branchingIns);
                 oneTime = false;
             }
         }

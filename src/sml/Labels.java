@@ -4,6 +4,10 @@ import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import java.util.List;
+import java.util.ArrayList;
 
 // TODO: write a JavaDoc for the class
 /**
@@ -17,6 +21,10 @@ import java.util.Objects;
 public final class Labels {
 	private final Map<String, Integer> labels = new HashMap<>();
 
+	private ArrayList<String> checkDuplicates = new ArrayList<>();
+
+	private int counter = 0;
+
 	/**
 	 * Adds a label with the associated address to the map.
 	 *
@@ -26,6 +34,18 @@ public final class Labels {
 	public void addLabel(String label, int address) {
 		Objects.requireNonNull(label);
 		// TODO: Add a check that there are no label duplicates.
+
+		checkDuplicates.add(label);
+		counter += 1;
+		if (checkDuplicates.size() > 1) {
+			String current = checkDuplicates.get(counter-1);
+			for (int i = 0; i < checkDuplicates.size()-1; i++) {
+				if (checkDuplicates.get(i).equals(current)) {
+					System.out.println("Duplicated labels found. Please correct txt file.");
+					return;
+				}
+			}
+		}
 
 		labels.put(label, address);
 	}
