@@ -9,7 +9,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static sml.Registers.Register;
 
 /**
@@ -70,7 +72,6 @@ public final class Translator {
 
 
     // Reflection to create new instances; when at certain instruction, i.e. MulInstruction, to create a new instance.
-
     private Instruction getInstruction(String label) {
         if (line.isEmpty())
             return null;
@@ -142,17 +143,19 @@ public final class Translator {
 
 
 
+
     /*
     private Instruction getInstruction(String label) throws ClassNotFoundException {
         // KIV...............................................................................
-        Class<?> c = Class.forName("instruction");
-        Arrays.stream(c.getClasses()).peek(item -> System.out.println("item: " + item));
+        Class<?> c = Class.forName("sml.instruction");
         //InputStream resourceAsStream = c.getResourceAsStream();
 
 
         return null;
     }
     */
+
+
 
 
     private String getLabel() {
