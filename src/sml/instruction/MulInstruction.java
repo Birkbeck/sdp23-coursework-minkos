@@ -36,6 +36,6 @@ public class MulInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return null;
+        return getLabelString() + getOpcode() + " " + result + " " + source;
     }
 }

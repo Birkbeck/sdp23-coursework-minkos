@@ -38,8 +38,9 @@ public class JnzInstructionTest {
 
         String ops = "mov";
         int movOpsValue = 7;
+        String branchingLabel = "f3";
 
-        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue); // Only EBX is used here
+        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue, branchingLabel); // Only EBX is used here
         instruction.execute(machine);
         Assertions.assertEquals(branchOff, machine.getRegisters().get(EAX));
         Assertions.assertEquals(movOpsValue, machine.getRegisters().get(EBX));
@@ -58,8 +59,9 @@ public class JnzInstructionTest {
         registers.set(EBX, value1);
         registers.set(ECX, value2);
         int res = value1*value2;
+        String branchingLabel = "f3";
 
-        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue);
+        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue, branchingLabel);
         instruction.execute(machine);
         Assertions.assertEquals(branchOff, machine.getRegisters().get(EAX));
         Assertions.assertEquals(res, machine.getRegisters().get(EBX));
@@ -78,8 +80,9 @@ public class JnzInstructionTest {
         registers.set(EBX, value1);
         registers.set(ECX, value2);
         int res = value1+value2;
+        String branchingLabel = "f3";
 
-        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue);
+        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue, branchingLabel);
         instruction.execute(machine);
         Assertions.assertEquals(branchOff, machine.getRegisters().get(EAX));
         Assertions.assertEquals(res, machine.getRegisters().get(EBX));
@@ -98,8 +101,9 @@ public class JnzInstructionTest {
         registers.set(EBX, value1);
         registers.set(ECX, value2);
         int res = value1-value2;
+        String branchingLabel = "f3";
 
-        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue);
+        Instruction instruction = new JnzInstruction(null, EAX, ops, EBX, ECX, movOpsValue, branchingLabel);
         instruction.execute(machine);
         Assertions.assertEquals(branchOff, machine.getRegisters().get(EAX));
         Assertions.assertEquals(res, machine.getRegisters().get(EBX));

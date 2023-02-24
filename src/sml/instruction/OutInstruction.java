@@ -33,6 +33,6 @@ public class OutInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return null;
+        return getLabelString() + getOpcode() + " " + register;
     }
 }

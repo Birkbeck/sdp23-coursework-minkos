@@ -22,6 +22,8 @@ public class JnzInstruction extends Instruction {
 
     private int movOpsValue;
 
+    private String branchLabel;
+
     /**
      * Constructor: an instruction with a label and an opcode
      * (opcode must be an operation of the language)
@@ -30,7 +32,7 @@ public class JnzInstruction extends Instruction {
      * @param opcode operation name
      */
 
-    public JnzInstruction(String label, RegisterName register, String ops, RegisterName register1, RegisterName register2, int movOpsValue) {
+    public JnzInstruction(String label, RegisterName register, String ops, RegisterName register1, RegisterName register2, int movOpsValue, String branchLabel) {
         super(label, OP_CODE);
         this.register = register;
         this.ops = ops;
@@ -38,6 +40,7 @@ public class JnzInstruction extends Instruction {
         this.register2 = register2;
         this.label = label;
         this.movOpsValue = movOpsValue;
+        this.branchLabel = branchLabel;
     }
 
     @Override
@@ -67,6 +70,6 @@ public class JnzInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return null;
+        return getLabelString() + getOpcode() + " " + register + " " + branchLabel;
     }
 }

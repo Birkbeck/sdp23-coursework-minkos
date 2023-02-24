@@ -101,6 +101,7 @@ public final class Translator {
             }
             case JnzInstruction.OP_CODE -> {
                 String r = scan();
+                String branchLabel = scan();
 
                 // Branching (math ops, i.e. mul)
                 String ops = branchingIns.substring(4, 7);
@@ -111,9 +112,9 @@ public final class Translator {
 
                 if ("mov".equals(ops)) {
                     int secondParam = Integer.parseInt(secondReg);
-                    return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(firstReg), secondParam);
+                    return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(firstReg), secondParam, branchLabel);
                 }
-                return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(secondReg), 0);
+                return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(secondReg), 0, branchLabel);
 
             }
             case OutInstruction.OP_CODE -> {
