@@ -2,7 +2,8 @@ package sml;
 
 // TODO: write a JavaDoc for the class
 /**
- * An abstract class showcasing the essential information.
+ * An abstract class here is a restricted class that cannot be used to create objects. In order to get access,
+ * it must be inherited from another class.
  */
 
 import java.util.Objects;

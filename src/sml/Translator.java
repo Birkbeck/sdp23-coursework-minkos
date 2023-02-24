@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -67,18 +68,9 @@ public final class Translator {
      * with its label already removed.
      */
 
-    /*
-    // KIV............................................
-    public Instruction getInstruction(String label) {
-        try {
-            return Instruction.valueOf(label.name());
-        } catch (IllegalArgumentException ignore) {
-        throw new AssertionError(label);
-    }
-    */
-
 
     // Reflection to create new instances; when at certain instruction, i.e. MulInstruction, to create a new instance.
+
     private Instruction getInstruction(String label) {
         if (line.isEmpty())
             return null;
@@ -94,8 +86,6 @@ public final class Translator {
 
                 String r = scan();
                 int v = Integer.parseInt(scan());
-                // System.out.println("r: " + r); // EAX
-                // System.out.println("v: " + v); // 6
                 return new MovInstruction(label, Register.valueOf(r), v);
             }
             case MulInstruction.OP_CODE -> {
@@ -123,7 +113,6 @@ public final class Translator {
                     int secondParam = Integer.parseInt(secondReg);
                     return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(firstReg), secondParam);
                 }
-
                 return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(secondReg), 0);
 
             }
@@ -136,8 +125,6 @@ public final class Translator {
             // TODO: add code for all other types of instructions
 
             // TODO: Then, replace the switch by using the Reflection API
-
-            //return c.newInstance(label, Register.valueOf(r), Register.valueOf(s));
 
 
             // TODO: Next, use dependency injection to allow this machine class
@@ -152,10 +139,13 @@ public final class Translator {
     }
 
 
+
+
     /*
     private Instruction getInstruction(String label) throws ClassNotFoundException {
         // KIV...............................................................................
-        Class<?> c = Class.forName("sml.instruction");
+        Class<?> c = Class.forName("instruction");
+        Arrays.stream(c.getClasses()).peek(item -> System.out.println("item: " + item));
         //InputStream resourceAsStream = c.getResourceAsStream();
 
 

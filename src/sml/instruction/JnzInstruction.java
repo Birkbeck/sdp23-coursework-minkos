@@ -10,9 +10,9 @@ public class JnzInstruction extends Instruction {
 
     public static final String OP_CODE = "jnz";
 
-    private RegisterName register;
+    public RegisterName register;
 
-    private String ops;
+    public String ops;
 
     private RegisterName register1;
 
@@ -29,6 +29,7 @@ public class JnzInstruction extends Instruction {
      * @param label  optional label (can be null)
      * @param opcode operation name
      */
+
     public JnzInstruction(String label, RegisterName register, String ops, RegisterName register1, RegisterName register2, int movOpsValue) {
         super(label, OP_CODE);
         this.register = register;
