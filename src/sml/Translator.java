@@ -5,7 +5,10 @@ import sml.instruction.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -35,6 +38,8 @@ public final class Translator {
     public Translator(String fileName) {
         this.fileName =  fileName;
     }
+
+    public static Class<?> c;
 
     // translate the small program in the file into lab (the labels) and
     // prog (the program)
@@ -77,6 +82,7 @@ public final class Translator {
             return null;
 
         String opcode = scan();
+        /*
         switch (opcode) {
             case AddInstruction.OP_CODE -> {
                 String r = scan();
@@ -136,24 +142,36 @@ public final class Translator {
                 System.out.println("Unknown instruction: " + opcode);
             }
         }
+        */
+
+
+        List<Instruction> list;
+        list = new ArrayList<Instruction>();
+
+        List.of(AddInstruction.OP_CODE, MovInstruction.OP_CODE,
+                MulInstruction.OP_CODE, SubInstruction.OP_CODE,
+                JnzInstruction.OP_CODE, OutInstruction.OP_CODE).stream()
+                .filter(item -> item.equals(opcode))
+                .map(item -> {
+
+                    Instruction obj = null;
+                    try {
+                        obj = (Instruction) Class.forName("sml.instruction" + "." + item + "Instruction").newInstance();
+                    } catch (InstantiationException e) {
+                        throw new RuntimeException(e);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    list.add(obj);
+                    return obj;
+                });
+
+
         return null;
 
     }
-
-
-
-
-
-    /*
-    private Instruction getInstruction(String label) throws ClassNotFoundException {
-        // KIV...............................................................................
-        Class<?> c = Class.forName("sml.instruction");
-        //InputStream resourceAsStream = c.getResourceAsStream();
-
-
-        return null;
-    }
-    */
 
 
 

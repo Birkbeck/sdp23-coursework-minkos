@@ -6,7 +6,7 @@ import sml.RegisterName;
 
 public class MulInstruction extends Instruction {
 
-    public static final String OP_CODE = "mul";
+    public static final String OP_CODE = "Mul";
 
     private final RegisterName result;
 

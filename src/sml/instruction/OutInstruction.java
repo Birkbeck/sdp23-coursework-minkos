@@ -7,7 +7,7 @@ import sml.RegisterName;
 
 public class OutInstruction extends Instruction {
 
-    public static final String OP_CODE = "out";
+    public static final String OP_CODE = "Out";
     private RegisterName register;
 
     /**
