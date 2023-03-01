@@ -6,7 +6,7 @@ import sml.RegisterName;
 
 public class SubInstruction extends Instruction {
 
-    public static final String OP_CODE = "Sub";
+    public static final String OP_CODE = "sub";
 
     private final RegisterName result;
 

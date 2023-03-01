@@ -82,7 +82,6 @@ public final class Translator {
             return null;
 
         String opcode = scan();
-        /*
         switch (opcode) {
             case AddInstruction.OP_CODE -> {
                 String r = scan();
@@ -142,9 +141,10 @@ public final class Translator {
                 System.out.println("Unknown instruction: " + opcode);
             }
         }
-        */
 
 
+
+        /*
         List<Instruction> list;
         list = new ArrayList<Instruction>();
 
@@ -167,10 +167,10 @@ public final class Translator {
                     list.add(obj);
                     return obj;
                 });
+        */
 
 
         return null;
-
     }
 
 

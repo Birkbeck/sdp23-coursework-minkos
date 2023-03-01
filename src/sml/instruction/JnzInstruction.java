@@ -8,7 +8,7 @@ import sml.RegisterName;
 
 public class JnzInstruction extends Instruction {
 
-    public static final String OP_CODE = "Jnz";
+    public static final String OP_CODE = "jnz";
 
     public RegisterName register;
 

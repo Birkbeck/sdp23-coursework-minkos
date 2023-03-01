@@ -9,7 +9,7 @@ public class MovInstruction extends Instruction {
     private final RegisterName register;
     private final int value;
 
-    public static final String OP_CODE = "Mov";
+    public static final String OP_CODE = "mov";
     /**
      * Constructor: an instruction with a label and an opcode
      * (opcode must be an operation of the language)
