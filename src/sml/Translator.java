@@ -31,6 +31,7 @@ public final class Translator {
     // line contains the characters in the current line that's not been processed yet
     private String line = "";
 
+    // branchingIns: variable to store instruction to execute after branching off
     private String branchingIns;
 
     private Boolean oneTime = true;
@@ -83,28 +84,33 @@ public final class Translator {
 
         String opcode = scan();
         switch (opcode) {
+            // Switch case for add operation for 2 values stored in 2 different registers.
             case AddInstruction.OP_CODE -> {
                 String r = scan();
                 String s = scan();
                 return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
+            // Switch case for moving an integer into a register.
             case MovInstruction.OP_CODE -> {
 
                 String r = scan();
                 int v = Integer.parseInt(scan());
                 return new MovInstruction(label, Register.valueOf(r), v);
             }
+            // Switch case for multiply operation between 2 values stored in 2 different registers.
             case MulInstruction.OP_CODE -> {
 
                 String r = scan();
                 String s = scan();
                 return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
+            // Switch case for subtraction operation between 2 values stored in 2 different registers.
             case SubInstruction.OP_CODE -> {
                 String r = scan();
                 String s = scan();
                 return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
+            // Switch case for branching off to the specified label
             case JnzInstruction.OP_CODE -> {
                 String r = scan();
                 String branchLabel = scan();
@@ -116,10 +122,12 @@ public final class Translator {
                 // Branching (register, i.e. EAX)
                 String secondReg = branchingIns.substring(12);
 
+                // For the case of move operation
                 if ("mov".equals(ops)) {
                     int secondParam = Integer.parseInt(secondReg);
                     return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(firstReg), secondParam, branchLabel);
                 }
+                // All other operation
                 return new JnzInstruction(label, Register.valueOf(r), ops, Register.valueOf(firstReg), Register.valueOf(secondReg), 0, branchLabel);
 
             }
@@ -130,12 +138,7 @@ public final class Translator {
             }
 
             // TODO: add code for all other types of instructions
-
-            // TODO: Then, replace the switch by using the Reflection API
-
-
-            // TODO: Next, use dependency injection to allow this machine class
-            //       to work with different sets of opcodes (different CPUs)
+            // Ans: Added as shown above by the various cases within the switch.
 
             default -> {
                 System.out.println("Unknown instruction: " + opcode);
@@ -143,8 +146,9 @@ public final class Translator {
         }
 
 
-
+        // TODO: Then, replace the switch by using the Reflection API
         /*
+        // An attempt on converting switch case to Reflection API but did not work.
         List<Instruction> list;
         list = new ArrayList<Instruction>();
 
@@ -168,6 +172,10 @@ public final class Translator {
                     return obj;
                 });
         */
+
+        // TODO: Next, use dependency injection to allow this machine class
+        //       to work with different sets of opcodes (different CPUs)
+        // Not Done
 
 
         return null;
@@ -193,6 +201,8 @@ public final class Translator {
     private String scan() {
 
         if (oneTime) {
+            // To store the instruction so that after branching off this stored instruction can be executed
+            // Also, note that program is designed to recognise "f3" as a label to branch off.
             if (line.substring(0).contains("f3")) {
                 branchingIns = line;
                 oneTime = false;

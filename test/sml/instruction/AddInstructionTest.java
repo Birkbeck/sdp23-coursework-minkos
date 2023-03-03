@@ -30,19 +30,31 @@ class AddInstructionTest {
 
   @Test
   void executeValid() {
+
+    // Set values for registers
     registers.set(EAX, 5);
     registers.set(EBX, 6);
+
+    // Instantiate AddInstruction class for testing.
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     instruction.execute(machine);
+
+    // Checks addition operation occurs correctly.
     Assertions.assertEquals(11, machine.getRegisters().get(EAX));
   }
 
   @Test
   void executeValidTwo() {
+
+    // Set values for registers
     registers.set(EAX, -5);
     registers.set(EBX, 6);
+
+    // Instantiate AddInstruction class for testing.
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     instruction.execute(machine);
+
+    // Checks addition operation occurs correctly.
     Assertions.assertEquals(1, machine.getRegisters().get(EAX));
   }
 }

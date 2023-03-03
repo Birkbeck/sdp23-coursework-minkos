@@ -41,6 +41,7 @@ public final class Labels {
 			String current = checkDuplicates.get(counter-1);
 			for (int i = 0; i < checkDuplicates.size()-1; i++) {
 				if (checkDuplicates.get(i).equals(current)) {
+					// Once duplicates are found, a printout occurs to inform user.
 					System.out.println("Duplicated labels found. Please correct txt file.");
 					return;
 				}
@@ -58,6 +59,7 @@ public final class Labels {
 	 */
 	public int getAddress(String label) throws NullPointerException {
 		// TODO: Where can NullPointerException be thrown here?
+		//		 Ans: As shown above; NullPointerException can be thrown while declaring a function
 		//       (Write an explanation.)
 		// Ans: A specification of the throws clause that outputs a NullPointerException when a reference is used that
 		//  	....points to no location in memory, which is null, like it was referencing an object.

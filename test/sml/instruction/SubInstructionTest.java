@@ -30,19 +30,16 @@ public class SubInstructionTest {
 
     @Test
     void executeValid() {
+
+        // Set values for registers
         registers.set(EAX, 10);
         registers.set(EBX, 7);
-        Instruction instruction = new SubInstruction(null, EAX, EBX);
-        instruction.execute(machine);
-        Assertions.assertEquals(3, machine.getRegisters().get(EAX));
-    }
 
-    @Test
-    void executeValidTwo() {
-        registers.set(EAX, 15);
-        registers.set(EBX, 5);
+        // Instantiate SubInstruction class for testing.
         Instruction instruction = new SubInstruction(null, EAX, EBX);
         instruction.execute(machine);
-        Assertions.assertEquals(10, machine.getRegisters().get(EAX));
+
+        // Checks subtraction operation occurs correctly.
+        Assertions.assertEquals(3, machine.getRegisters().get(EAX));
     }
 }

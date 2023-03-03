@@ -27,8 +27,11 @@ public class MulInstruction extends Instruction {
     @Override
     public int execute(Machine machine) {
 
+        // Extract values from registers
         int value1 = machine.getRegisters().get(result);
         int value2 = machine.getRegisters().get(source);
+
+        // Multiply and storing of result.
         machine.getRegisters().set(result, value1*value2);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
 

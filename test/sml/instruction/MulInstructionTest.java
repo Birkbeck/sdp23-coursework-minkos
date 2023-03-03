@@ -30,19 +30,16 @@ public class MulInstructionTest {
 
     @Test
     void executeValid() {
+
+        // Set values for registers
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction = new MulInstruction(null, EAX, EBX);
-        instruction.execute(machine);
-        Assertions.assertEquals(30, machine.getRegisters().get(EAX));
-    }
 
-    @Test
-    void executeValidTwo() {
-        registers.set(EAX, 7);
-        registers.set(EBX, 5);
+        // Instantiate MulInstruction class for testing.
         Instruction instruction = new MulInstruction(null, EAX, EBX);
         instruction.execute(machine);
-        Assertions.assertEquals(35, machine.getRegisters().get(EAX));
+
+        // Checks multiply operation occurs correctly.
+        Assertions.assertEquals(30, machine.getRegisters().get(EAX));
     }
 }

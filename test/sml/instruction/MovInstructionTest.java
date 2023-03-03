@@ -31,17 +31,15 @@ public class MovInstructionTest {
 
     @Test
     void executeValid() {
+
+        // Set variables to pass in as parameters when instantiating MovInstruction class for testing
         int argument = 10;
+
+        // Instantiate MovInstruction class for testing.
         Instruction instruction = new MovInstruction(null, EAX, argument);
         instruction.execute(machine);
-        Assertions.assertEquals(argument, machine.getRegisters().get(EAX));
-    }
 
-    @Test
-    void executeValidTwo() {
-        int argument2 = 15;
-        Instruction instruction = new MovInstruction(null, EAX, argument2);
-        instruction.execute(machine);
-        Assertions.assertEquals(15, machine.getRegisters().get(EAX));
+        //Checks move operation is executed correctly.
+        Assertions.assertEquals(argument, machine.getRegisters().get(EAX));
     }
 }

@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 // TODO: write a JavaDoc for the class
 /**
- * Class to manage getting and setting values in registers.
+ * Class to manage getting, setting and clearing values in registers.
+ * It also implements hashCode and toString functions.
  */
 
 /**
